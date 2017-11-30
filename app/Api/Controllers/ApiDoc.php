@@ -50,7 +50,9 @@ class ApiDoc extends BaseController
 
             '情报信息' => $this->intelligences($url),
 
-            '帮忙文档' => $this->helpDoc($url)
+            '帮忙文档' => $this->helpDoc($url),
+
+            '简介' => $this->introduction($url)
         ];
 
         return response()->json(compact('api'));
@@ -97,6 +99,35 @@ class ApiDoc extends BaseController
             '帮助文档' => [
                 '说明' => '获取帮助文档',
                 'url' => $url . '/help-doc',
+                'method' => 'GET',
+                'params' => [],
+                'response' => [
+                    'code' => '',
+                    'info' => '',
+                    'data' => [
+                        'current_page' => '页数',
+                        'data' => '实际数据list',
+                        'first_page_url' => '第一页信息',
+                        'last_page_url' => '最后一页信息',
+                        'next_page_url' => '下一页的调用地址，可以直接赋值到button上'
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * 简介信息
+     *
+     * @param $url
+     * @return array
+     */
+    public function introduction($url)
+    {
+        return [
+            '简介' => [
+                '说明' => '倒序获取简介列表，每次最多10条',
+                'url' => $url . '/introduction',
                 'method' => 'GET',
                 'params' => [],
                 'response' => [

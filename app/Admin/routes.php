@@ -14,4 +14,6 @@ Route::group([
 
     $router->resource('intelligence', IntelligenceController::class);
     $router->resource('help-doc', HelpDocController::class);
+
+    $router->resource('introduction', IntroductionController::class);
 });

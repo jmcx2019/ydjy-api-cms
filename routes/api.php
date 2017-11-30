@@ -22,5 +22,7 @@ $api->version('v1', function ($api) {
     $api->group(['namespace' => 'App\Api\Controllers', 'middleware' => ['jwt.api.auth']], function ($api) {
         $api->get('intelligence', 'IntelligenceController@index');
         $api->get('help-doc', 'HelpDocController@index');
+
+        $api->get('introduction', 'IntroductionController@index');
     });
 });

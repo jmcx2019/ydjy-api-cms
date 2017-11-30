@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Intelligence;
+use App\Introduction;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class IntelligenceController extends Controller
+class IntroductionController extends Controller
 {
     use ModelForm;
 
@@ -24,8 +24,8 @@ class IntelligenceController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('新闻情报');
-            $content->description('用来给展示新闻/情报/公告等信息');
+            $content->header('艺动简介');
+            $content->description('展示官网内容：关于艺动 -> 艺动简介');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class IntelligenceController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('修改情报');
-            $content->description('修改情报的内容或状态（停用的情报将不会再显示）');
+            $content->header('修改简介');
+            $content->description('修改展示官网内容：关于艺动 -> 艺动简介，其中状态：停用的将不会再显示，启用的会显示最新一个');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class IntelligenceController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('新建情报');
-            $content->description('新建的情报(状态：启用)，会通过API直接暴露到调用了新闻列表中。');
+            $content->header('新建简介');
+            $content->description('新建展示官网内容：关于艺动 -> 艺动简介，其中状态：停用的将不会再显示，启用的会显示最新一个');
 
             $content->body($this->form());
         });
@@ -71,13 +71,13 @@ class IntelligenceController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Intelligence::class, function (Grid $grid) {
+        return Admin::grid(Introduction::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
 
-            $grid->column('title', '标题');
             $grid->column('summary', '摘要');
-//            $grid->column('author', '作者');
+            $grid->column('content', '内容');
+            $grid->column('slogan', 'Slogan');
             $grid->column('status', '状态');
 
             $grid->created_at('创建时间');
@@ -96,19 +96,17 @@ class IntelligenceController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Intelligence::class, function (Form $form) {
+        return Admin::form(Introduction::class, function (Form $form) {
 
             $form->display('id', 'ID');
 
-            $form->text('title', '标题');
             $form->textarea('summary', '摘要');
             $form->editor('content', '内容');
+            $form->textarea('slogan', 'Slogan');
             $form->select('status', '状态')->options([
                 '启用' => '启用',
                 '停用' => '停用'
             ])->default('启用');
-
-//            $form->display('author', '作者')->default(Admin::user()->username);
 
             $form->display('created_at', '创建时间');
             $form->display('updated_at', '更新时间');
