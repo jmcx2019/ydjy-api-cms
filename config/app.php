@@ -179,6 +179,7 @@ return [
 
         Barryvdh\Cors\ServiceProvider::class,
         Stevenyangecho\UEditor\UEditorServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'cors' => \Barryvdh\Cors\HandleCors::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

@@ -16,4 +16,5 @@ Route::group([
     $router->resource('help-doc', HelpDocController::class);
 
     $router->resource('introduction', IntroductionController::class);
+    $router->resource('teacher', TeacherController::class);
 });

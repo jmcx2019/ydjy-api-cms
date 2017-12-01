@@ -24,5 +24,6 @@ $api->version('v1', function ($api) {
         $api->get('help-doc', 'HelpDocController@index');
 
         $api->get('introduction', 'IntroductionController@index');
+        $api->get('teacher', 'TeacherController@index');
     });
 });
