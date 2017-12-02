@@ -104,7 +104,7 @@ class TeacherController extends Controller
             $form->display('id', 'ID');
 
             $form->text('name', '姓名');
-            $form->image('avatar', '头像')->move('images/teachers');
+            $form->image('avatar', '头像')->uniqueName()->move('images/teachers');
             $form->text('position', '职位');
             $form->text('title', '名号');
             $form->textarea('description', '描述');
