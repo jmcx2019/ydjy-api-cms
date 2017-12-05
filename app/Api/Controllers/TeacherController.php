@@ -4,6 +4,7 @@ namespace App\Api\Controllers;
 
 use App\Teacher;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
@@ -12,9 +13,10 @@ class TeacherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Teacher::where('status', '启用')->orderBy('id', 'desc')->paginate(20);
+        $count = $request->input('count') === null ? 20 : $request->input('count');
+        $data = Teacher::where('status', '启用')->orderBy('id', 'desc')->paginate($count);
 
         $retData = [
             'code' => 1000,
