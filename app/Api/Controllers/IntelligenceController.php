@@ -4,17 +4,20 @@ namespace App\Api\Controllers;
 
 use App\Intelligence;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class IntelligenceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Intelligence::where('status', '启用')->orderBy('id', 'desc')->paginate(10);
+        $count = $request->input('count') === null ? 10 : $request->input('count');
+        $data = Intelligence::where('status', '启用')->orderBy('id', 'desc')->paginate($count);
 
         $retData = [
             'code' => 1000,

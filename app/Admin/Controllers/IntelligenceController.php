@@ -76,6 +76,7 @@ class IntelligenceController extends Controller
             $grid->id('ID')->sortable();
 
             $grid->column('title', '标题');
+            $grid->column('focus_img_url', '展示图')->image('', 100, 100);
             $grid->column('summary', '摘要');
 //            $grid->column('author', '作者');
             $grid->column('status', '状态');
@@ -101,6 +102,7 @@ class IntelligenceController extends Controller
             $form->display('id', 'ID');
 
             $form->text('title', '标题');
+            $form->image('focus_img_url', '展示图')->uniqueName()->move('images/news');
             $form->textarea('summary', '摘要');
             $form->editor('content', '内容');
             $form->select('status', '状态')->options([
