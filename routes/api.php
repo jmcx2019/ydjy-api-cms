@@ -27,5 +27,6 @@ $api->version('v1', function ($api) {
         $api->get('teacher', 'TeacherController@index');
         $api->get('student', 'StudentController@index');
         $api->get('classroom', 'ClassroomController@index');
+        $api->get('class', 'ClassController@index');
     });
 });

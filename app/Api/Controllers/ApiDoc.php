@@ -55,7 +55,9 @@ class ApiDoc extends BaseController
             '简介' => $this->introduction($url),
             '师资' => $this->teacher($url),
             '学生' => $this->student($url),
-            '教学环境' => $this->classroom($url)
+            '教学环境' => $this->classroom($url),
+
+            '课程' => $this->class($url)
         ];
 
         return response()->json(compact('api'));
@@ -161,7 +163,9 @@ class ApiDoc extends BaseController
                 '说明' => '倒序获取列表，每次最多20条',
                 'url' => $url . '/teacher',
                 'method' => 'GET',
-                'params' => [],
+                'params' => [
+                    'count' => '单次获取的数量'
+                ],
                 'response' => [
                     'code' => '',
                     'info' => '',
@@ -190,7 +194,9 @@ class ApiDoc extends BaseController
                 '说明' => '倒序获取列表，每次最多20条',
                 'url' => $url . '/student',
                 'method' => 'GET',
-                'params' => [],
+                'params' => [
+                    'count' => '单次获取的数量'
+                ],
                 'response' => [
                     'code' => '',
                     'info' => '',
@@ -220,6 +226,38 @@ class ApiDoc extends BaseController
                 'url' => $url . '/classroom',
                 'method' => 'GET',
                 'params' => [],
+                'response' => [
+                    'code' => '',
+                    'info' => '',
+                    'data' => [
+                        'current_page' => '页数',
+                        'data' => '实际数据list',
+                        'first_page_url' => '第一页信息',
+                        'last_page_url' => '最后一页信息',
+                        'next_page_url' => '下一页的调用地址，可以直接赋值到button上'
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * 课程安排
+     *
+     * @param $url
+     * @return array
+     */
+    public function class($url)
+    {
+        return [
+            '简介' => [
+                '说明' => '倒序获取列表，每次最多20条',
+                'url' => $url . '/class',
+                'method' => 'GET',
+                'params' => [
+                    'count' => '单次获取的数量',
+                    'homepage' => '只获取在首页显示的数据',
+                ],
                 'response' => [
                     'code' => '',
                     'info' => '',
