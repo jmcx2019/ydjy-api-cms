@@ -24,8 +24,8 @@ class MediaArtController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('传媒艺考');
-            $content->description('项目简介、优势、各个专业内容、可考院校。注意：该表格只有修改选项！');
+            $content->header('艺术升学/留学游学');
+            $content->description('传媒艺考、美术艺考、中考美术特长的项目简介、优势等信息。注意：该表格只有修改选项！');
 
             $content->body($this->grid());
         });
