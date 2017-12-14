@@ -22,4 +22,5 @@ Route::group([
     $router->resource('class', ClassController::class);
 
     $router->resource('media', MediaArtController::class);
+    $router->resource('scores', ScoreController::class);
 });

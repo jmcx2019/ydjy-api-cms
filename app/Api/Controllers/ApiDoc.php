@@ -59,7 +59,8 @@ class ApiDoc extends BaseController
 
             '课程' => $this->class($url),
 
-            '传媒艺考' => $this->media($url)
+            '传媒艺考' => $this->media($url),
+            '录取分数线' => $this->score($url)
         ];
 
         return response()->json(compact('api'));
@@ -289,8 +290,38 @@ class ApiDoc extends BaseController
                 'url' => $url . '/media',
                 'method' => 'GET',
                 'params' => [
-                    'count' => '单次获取的数量',
-                    'homepage' => '只获取在首页显示的数据',
+                    'id' => '数据ID'
+                ],
+                'response' => [
+                    'code' => '',
+                    'info' => '',
+                    'data' => [
+                        'current_page' => '页数',
+                        'data' => '实际数据list',
+                        'first_page_url' => '第一页信息',
+                        'last_page_url' => '最后一页信息',
+                        'next_page_url' => '下一页的调用地址，可以直接赋值到button上'
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * 获取高考录取分数线的相关信息
+     *
+     * @param $url
+     * @return array
+     */
+    public function score($url)
+    {
+        return [
+            '简介' => [
+                '说明' => '获取高考录取分数线的相关信息',
+                'url' => $url . '/score',
+                'method' => 'GET',
+                'params' => [
+                    'count' => '单次获取的数量'
                 ],
                 'response' => [
                     'code' => '',

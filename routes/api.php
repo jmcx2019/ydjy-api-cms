@@ -30,5 +30,6 @@ $api->version('v1', function ($api) {
         $api->get('class', 'ClassController@index');
 
         $api->get('media', 'MediaArtController@index');
+        $api->get('score', 'ScoreController@index');
     });
 });
